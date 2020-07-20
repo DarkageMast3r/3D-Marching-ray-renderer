@@ -222,15 +222,17 @@ hitData marchRay(vec3 position, vec3 direction) {
             }
         }
 
+        vec3 closestPortal = dot(vec3(0, 75, 0) - currentPosition, actDir) * actDir + currentPosition;
+        vec3 portalDir = (currentPosition - closestPortal);
+        bool inRange = isInRadius(closestPortal - vec3(0, 75, 0), 15);
 
         travelledDistance += maxDis;
         currentPosition = currentPosition + actDir * maxDis;
 
         // bending light rays
-        if (isInRadius(currentPosition - vec3(0, 75, 0), 15)) {
+        bool inFront = dot(currentPosition, portalDir) < 0;
+        if (inRange && !inFront) {
             currentPosition = vec3(500, 75, 0) + (currentPosition - vec3(0, 75, 0)) * 1;
-        } else {
-            actDir = direction;
         }
 
         if (maxDis < 0.01 && (!isInRadius(position - currentPosition, 0.01) || steps > 1)) {
