@@ -2,9 +2,8 @@ local imgData = love.image.newImageData(600, 600)
 local image = love.graphics.newImage(imgData)
 
 local shader = love.graphics.newShader('shader.glsl')
-love.graphics.setShader(shader)
 
-local position = {0, 35, 0}
+local position = {0, 55, 0}
 local rotation = {0, 0, 0}
 local lastMouseX = love.mouse.getX()
 local lastMouseY = love.mouse.getY()
@@ -101,16 +100,22 @@ function love.update(dt)
     shader:send('time', love.timer.getTime())
     shader:send(
         'lights',
-        {0, 10, 0, 100},
+        {math.cos(love.timer.getTime() * 2 + math.pi) * 70.7, 70.7, math.sin(love.timer.getTime() * 2 + math.pi) * 70.7, 100},
         {math.cos(love.timer.getTime() * 2) * 70.7, 70.7, math.sin(love.timer.getTime() * 2) * 70.7, 100}
     )
 end
 
 function love.draw()
+    love.graphics.setShader(shader)
     love.graphics.draw(
         image,
-        love.graphics.getWidth()/2 - 300,
-        love.graphics.getHeight()/2 - 300
+        love.graphics.getWidth()/2 - image:getWidth()/2,
+        love.graphics.getHeight()/2 - image:getHeight()/2
+    )
+    love.graphics.setShader()
+    love.graphics.print(
+        ('FPS: %s'):format(love.timer.getFPS()),
+        5, 5
     )
 end
 
