@@ -6,5 +6,6 @@ If you don't have the Love2D engine, download everything except for the source f
 WASD + Left shift + Space to move
 Click and move mouse to rotate camera
 T to enable/disable shadows
+Escape to leave
 
 Camera movement doesn't completely follow the rotation for whatever reason, and I can't be bothered fixing it.
