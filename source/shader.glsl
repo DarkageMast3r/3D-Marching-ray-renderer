@@ -353,7 +353,7 @@ vec4 effect(vec4 color, Image texture, vec2 texCoords, vec2 screenCoords) {
         true,
         1
     );
-    int r;
+    float r;
     int i = 4;
     for (r = 0; r < 360; r = r + 15) {
         i++;
