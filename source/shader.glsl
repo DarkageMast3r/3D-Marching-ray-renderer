@@ -355,7 +355,7 @@ vec4 effect(vec4 color, Image texture, vec2 texCoords, vec2 screenCoords) {
     );
     float r;
     int i = 4;
-    for (r = 0; r < 360; r = r + 15) {
+    for (r = 0.0; r < 360.0; r = r + 15.0) {
         i++;
         spheres[i] = sphere(
             vec3(cos(radians(r)) * 50, ( -cos(time + radians(r))) * 5 + 25, sin(radians(r)) * 50),
